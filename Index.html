@@ -1,0 +1,38 @@
+{% with messages = get_flashed_messages() %}
+{% if messages%}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action="/add_word" method = "POST">
+    <input type="text" class="form-control" name="Palabra_E" placeholder="Palabra_E">
+    <input type="text" class="form-control" name="Palabra_S" placeholder="Palabra_S">        
+    <button type="submit">
+        Save
+    </button>
+ </form>
+
+ <table>
+    <thead> 
+        <tr>
+            <td>Palabra_E</td>
+            <td>Palabra_S</td>
+            <td>Operations</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for datos in Diccionario %}
+            <tr>
+                <td>{{ datos.1}}</td> 
+                <td>{{ datos.2}}</td>
+                <td>
+                    <a href="/edit/{{datos.0}}">Edit</a>
+                    <a href="/delete/{{datos.0}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+ </table>
+          
